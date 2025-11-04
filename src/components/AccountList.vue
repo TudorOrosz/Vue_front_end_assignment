@@ -13,33 +13,33 @@ export default {
     const router = useRouter()
 
     onMounted(async () => {
-        const data = await getAccounts()
-        const groups = data.accountGroups || []
-        const current = groups.find((g: any) => g.groupId === 'current')
-        const savings = groups.find((g: any) => g.groupId === 'savings')
-        currentAccounts.value = current ? current.accounts : []
-        savingsAccounts.value = savings ? savings.accounts : []
-        loading.value = false
+      const data = await getAccounts()
+      const groups = data.accountGroups || []
+      const current = groups.find((g: any) => g.groupId === 'current')
+      const savings = groups.find((g: any) => g.groupId === 'savings')
+      currentAccounts.value = current ? current.accounts : []
+      savingsAccounts.value = savings ? savings.accounts : []
+      loading.value = false
     })
 
     function formatAmount(n: number) {
-        return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' }).format(n)
+      return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' }).format(n)
     }
 
     function goToAccount(accountNumber: string) {
-        router.push({ path: `/account/${accountNumber}` })
+      router.push({ path: `/account/${accountNumber}` })
     }
 
     const currentTotal = computed(() => currentAccounts.value.reduce((s, a) => s + (a.balance ?? a.bookBalance ?? 0), 0))
     const savingsTotal = computed(() => savingsAccounts.value.reduce((s, a) => s + (a.balance ?? a.bookBalance ?? 0), 0))
     
     const selectedAccounts = computed(() => {
-        return selectedTab.value === 'current' ? currentAccounts.value : savingsAccounts.value;
-    });
+      return selectedTab.value === 'current' ? currentAccounts.value : savingsAccounts.value
+    })
 
     const selectedTotal = computed(() => {
-        return selectedTab.value === 'current' ? currentTotal.value : savingsTotal.value;
-    });
+      return selectedTab.value === 'current' ? currentTotal.value : savingsTotal.value
+    })
 
     return { currentAccounts, savingsAccounts, loading, formatAmount, goToAccount, selectedTab, currentTotal, savingsTotal, selectedAccounts, selectedTotal }
   }

@@ -1,15 +1,14 @@
 <script lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
+import { useRouter } from 'vue-router'
 import { getTransactions } from '../services/api'
 
 export default {
   name: 'AccountDetail',
-  props: ['accountNumber'], //why this
+  props: ['accountNumber'],
   setup(props: any) { //why this
-    const route = useRoute()
-    const router = useRouter() //difference between this and route?
-    const accountNumber = props.accountNumber || route.params.accountNumber
+    const router = useRouter()
+    const accountNumber = props.accountNumber
     const loading = ref(true)
     const transactions = ref<Array<any>>([])
     const query = ref('')
@@ -28,6 +27,7 @@ export default {
         const d = t.bookDate
         const afterFrom = !dateFrom.value || d >= dateFrom.value
         const beforeTo = !dateTo.value || d <= dateTo.value
+        console.log(matchesQuery, afterFrom, beforeTo)
         return matchesQuery && afterFrom && beforeTo
       })
     })
@@ -58,12 +58,11 @@ export default {
         <input type="date" v-model="dateFrom" />
         <input type="date" v-model="dateTo" />
       </div>
-
       <div v-if="filtered.length === 0" class="muted">No transactions match.</div>
       <div class="list">
         <div v-for="t of filtered" :key="t.transactionId" class="account-row">
           <div>
-            <div><strong>{{ t.counterpartyName || t.description }}</strong></div>
+            <div><strong>{{ t.counterpartyName }}</strong></div>
             <div class="muted">{{ t.description }}</div>
           </div>
           <div>
