@@ -1,0 +1,68 @@
+{
+  "account": {
+    "accountNumber": "NL18ABNA5476393838",
+    "currencyCode": "EUR"
+  },
+  "transactions": [
+    {
+      "transactionId": "193466467514933.040002",
+      "bookDate": "2021-02-28",
+      "transactionDateTime": "2021-02-28T20:23:00Z",
+      "creditDebitIndicator": "DEBIT",
+      "amount": 500,
+      "counterpartyAccountNumber": "NL72ABNA4416709382",
+      "counterpartyName": "John Doe",
+      "description": "Montly savings feb 21"
+    },
+    {
+      "transactionId": "193441320065145.040002",
+      "bookDate": "2021-01-31",
+      "transactionDateTime": "2021-02-31T20:23:00Z",
+      "creditDebitIndicator": "DEBIT",
+      "amount": 250,
+      "counterpartyAccountNumber": "NL72ABNA4416709382",
+      "counterpartyName": "John Doe",
+      "description": "Montly savings jan 21"
+    },
+    {
+      "transactionId": "193679679615204.040002",
+      "bookDate": "2021-01-08",
+      "transactionDateTime": "2021-01-08T04:13:00Z",
+      "creditDebitIndicator": "DEBIT",
+      "amount": 105.18,
+      "counterpartyAccountNumber": "NL44INGB4133227913",
+      "counterpartyName": "Media Markt Saturn Groep",
+      "description": "PIN PURCHASE 202101080001"
+    },
+    {
+      "transactionId": "193605509101484.030002",
+      "bookDate": "2021-01-04",
+      "transactionDateTime": "2021-01-01T00:24:00Z",
+      "creditDebitIndicator": "DEBIT",
+      "amount": 10.0,
+      "counterpartyAccountNumber": "NL56RABO9108061688",
+      "counterpartyName": "Centraal Beheer",
+      "description": "SEPA iDEAL"
+    },
+    {
+      "transactionId": "193594294273392.040003",
+      "bookDate": "2020-12-31",
+      "transactionDateTime": "2020-12-31T20:23:00Z",
+      "creditDebitIndicator": "CREDIT",
+      "amount": 24.0,
+      "counterpartyAccountNumber": "NL45ABNA8985562061",
+      "counterpartyName": "ABN AMRO",
+      "description": "TIKKIE TERUGBETALING 202012311234"
+    },
+    {
+      "transactionId": "193372656256186.040002",
+      "bookDate": "2020-12-31",
+      "transactionDateTime": "2020-12-31T20:23:00Z",
+      "creditDebitIndicator": "DEBIT",
+      "amount": 50,
+      "counterpartyAccountNumber": "NL72ABNA4416709382",
+      "counterpartyName": "John Doe",
+      "description": "Montly savings dec 20"
+    }
+  ]
+}

@@ -1,0 +1,38 @@
+{
+  "account": {
+    "accountNumber": "NL14ABNA4415260276",
+    "currencyCode": "EUR"
+  },
+  "transactions": [
+    {
+      "transactionId": "193594294273392.040002",
+      "bookDate": "2020-12-31",
+      "transactionDateTime": "2020-12-31T20:23:00Z",
+      "creditDebitIndicator": "DEBIT",
+      "amount": 12.4,
+      "counterpartyAccountNumber": "NL68INGB6669002742",
+      "counterpartyName": "POSTNL",
+      "description": "Postage Expenses"
+    },
+    {
+      "transactionId": "193594294273392.040001",
+      "bookDate": "2020-12-31",
+      "transactionDateTime": "2020-12-31T20:23:00Z",
+      "creditDebitIndicator": "DEBIT",
+      "amount": 7.64,
+      "counterpartyAccountNumber": "NL67INGB8338800724",
+      "counterpartyName": "BELASTINGDIENST",
+      "description": "TAX PAID"
+    },
+    {
+      "transactionId": "193576407479242.040002",
+      "bookDate": "2020-12-30",
+      "transactionDateTime": "2020-12-29T22:00:00Z",
+      "creditDebitIndicator": "CREDIT",
+      "amount": 850.0,
+      "counterpartyAccountNumber": "NL53INGB6653222179",
+      "counterpartyName": "Tennant 1",
+      "description": "Rent Dec 2020"
+    }
+  ]
+}

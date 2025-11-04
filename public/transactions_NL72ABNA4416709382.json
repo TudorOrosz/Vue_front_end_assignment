@@ -1,0 +1,38 @@
+{
+  "account": {
+    "accountNumber": "NL72ABNA4416709382",
+    "currencyCode": "EUR"
+  },
+  "transactions": [
+    {
+      "transactionId": "193466467514933.040002",
+      "bookDate": "2021-02-28",
+      "transactionDateTime": "2021-02-28T20:23:00Z",
+      "creditDebitIndicator": "CREDIT",
+      "amount": 500,
+      "counterpartyAccountNumber": "NL18ABNA5476393838",
+      "counterpartyName": "John Doe",
+      "description": "Montly savings feb 21"
+    },
+    {
+      "transactionId": "193441320065145.040002",
+      "bookDate": "2021-01-31",
+      "transactionDateTime": "2021-02-31T20:23:00Z",
+      "creditDebitIndicator": "CREDIT",
+      "amount": 250,
+      "counterpartyAccountNumber": "NL18ABNA5476393838",
+      "counterpartyName": "John Doe",
+      "description": "Montly savings jan 21"
+    },
+    {
+      "transactionId": "193372656256186.040002",
+      "bookDate": "2020-12-31",
+      "transactionDateTime": "2020-12-31T20:23:00Z",
+      "creditDebitIndicator": "CREDIT",
+      "amount": 50,
+      "counterpartyAccountNumber": "NL18ABNA5476393838",
+      "counterpartyName": "John Doe",
+      "description": "Montly savings dec 20"
+    }
+  ]
+}
