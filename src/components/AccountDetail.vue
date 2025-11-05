@@ -77,16 +77,3 @@ export default {
     </div>
   </div>
 </template>
-
-<style scoped>
-.search-row { 
-  display: flex;
-  gap: 8px;
-  margin-bottom: 12px;
-  flex-wrap: wrap; /* allow inputs to wrap on narrow screens */
-}
-.search-row input {
-  flex: 1 1 0; /* grow and shrink as needed */
-  min-width: 0; /* prevents overflow due to long content */
-}
-</style>
