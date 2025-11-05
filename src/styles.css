@@ -95,20 +95,29 @@ body {
 
 /* Account detail page styles */
 .header {
-    position: relative;
     display: flex;
     align-items: center;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 16px;
-    margin-bottom: 16px;
+
+      background: var(--brand);           /* Same brand color background */
+  color: var(--white-bg);                /* White text color */
+  padding: 8px 12px;                    /* Same padding */
+  border-radius: 6px;                  /* Rounded corners */
+  cursor: default;                    /* Usually pointer on buttons; default better for header */
+    font-weight: 600;                /* Match button boldness */
+  font-size: 1.25rem;               /* Larger text, somewhat button style */
+  user-select: none;               /* Prevent selecting header text like a button */
 }
 
 .account-title {
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    margin: 0;
-    font-size: 1.25rem;
+  font-size: 1.25rem;
+  margin: 0;
+  font-weight: 600;
+  color: var(--white-bg);
+  letter-spacing: 1px;
+  padding: 8px 24px;
+  /* NO position: absolute */
 }
 
 .content {
@@ -125,3 +134,19 @@ header h1 {
     margin: 0 0 16px 0;
     text-align: center;
 }
+
+
+.account-row > div:first-child {
+  flex: 1 1 auto; /* Take available space and shrink if needed */
+  min-width: 0;
+  /* Allows content to wrap as needed */
+}
+
+.account-row > div:last-child {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end; /* Keeps € and date aligned right */
+  flex-shrink: 0; /* Prevents shrinking */
+  min-width: 70px; /* Or set based on your needs */
+}
+

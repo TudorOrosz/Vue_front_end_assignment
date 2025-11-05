@@ -3,11 +3,29 @@ import { ref, onMounted, computed } from 'vue'
 import { useRouter } from 'vue-router'
 import { getAccounts } from '../services/api'
 
+interface Account {
+  accountNumberType: string
+  accountNumber: string
+  productName: string
+  currencyCode: string
+  holderName: string
+  bankCountryCode: string
+  bankIdentifierCode: string
+  balance?: number
+  bookBalance?: number
+}
+
+interface AccountGroup {
+  groupName: string
+  groupId: string
+  accounts: Account[]
+}
+
 export default {
   name: 'AccountList',
   setup() {
-    const currentAccounts = ref<Array<any>>([])
-    const savingsAccounts = ref<Array<any>>([])
+    const currentAccounts = ref<Account[]>([])
+    const savingsAccounts = ref<Account[]>([])
     const loading = ref(true)
     const selectedTab = ref<'current'|'savings'>('current')
     const router = useRouter()
@@ -15,8 +33,8 @@ export default {
     onMounted(async () => {
       const data = await getAccounts()
       const groups = data.accountGroups || []
-      const current = groups.find((g: any) => g.groupId === 'current')
-      const savings = groups.find((g: any) => g.groupId === 'savings')
+      const current = groups.find((g: AccountGroup) => g.groupId === 'current')
+      const savings = groups.find((g: AccountGroup) => g.groupId === 'savings')
       currentAccounts.value = current ? current.accounts : []
       savingsAccounts.value = savings ? savings.accounts : []
       loading.value = false
@@ -48,11 +66,11 @@ export default {
 
 <template>
     <div class="card">
-        <div v-if="loading">Loading accounts...</div>
+        <div v-if="loading" data-testid="loading">Loading accounts...</div>
         <div v-else>
             <div class="tabs">
-                <div :class="['tab', selectedTab === 'current' ? 'active' : '']" @click="selectedTab = 'current'">Current Accounts</div>
-                <div :class="['tab', selectedTab === 'savings' ? 'active' : '']" @click="selectedTab = 'savings'">Savings Accounts</div>
+                <div :class="['tab', selectedTab === 'current' ? 'active' : '']" @click="selectedTab = 'current'" data-testid="current-tab">Current Accounts</div>
+                <div :class="['tab', selectedTab === 'savings' ? 'active' : '']" @click="selectedTab = 'savings'" data-testid="savings-tab">Savings Accounts</div>
             </div>
             <div>
                 <div class="list">
@@ -62,7 +80,7 @@ export default {
                             <div class="muted">{{ acc.accountNumber }} • {{ acc.holderName }}</div>
                         </div>
                         <div style="text-align:right">
-                            <div><strong>{{ formatAmount(acc.balance ?? acc.bookBalance) }}</strong></div>
+                            <div><strong>{{ formatAmount(acc.balance ?? acc.bookBalance ?? 0) }}</strong></div>
                             <div class="muted">{{ acc.currencyCode ?? 'EUR' }}</div>
                         </div>
                     </div>

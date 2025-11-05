@@ -1,22 +1,31 @@
 <script lang="ts">
 import { ref, onMounted, computed } from 'vue'
-import { useRouter } from 'vue-router'
 import { getTransactions } from '../services/api'
+
+interface Transaction {
+  transactionId: string
+  bookDate: string
+  transactionDateTime: string
+  creditDebitIndicator: string
+  amount: number
+  counterpartyAccountNumber: string
+  counterpartyName: string
+  description: string
+}
 
 export default {
   name: 'AccountDetail',
   props: ['accountNumber'],
-  setup(props: any) { //why this
-    const router = useRouter()
-    const accountNumber = props.accountNumber
+  setup(props: { accountNumber: string }) {
+    const accountNr = props.accountNumber
     const loading = ref(true)
-    const transactions = ref<Array<any>>([])
+    const transactions = ref<Transaction[]>([])
     const query = ref('')
     const dateFrom = ref('')
     const dateTo = ref('')
 
     onMounted(async () => {
-      const res = await getTransactions(accountNumber)
+      const res = await getTransactions(accountNr)
       transactions.value = res.transactions || []
       loading.value = false
     })
@@ -27,7 +36,6 @@ export default {
         const d = t.bookDate
         const afterFrom = !dateFrom.value || d >= dateFrom.value
         const beforeTo = !dateTo.value || d <= dateTo.value
-        console.log(matchesQuery, afterFrom, beforeTo)
         return matchesQuery && afterFrom && beforeTo
       })
     })
@@ -36,11 +44,7 @@ export default {
       return new Intl.NumberFormat('en-GB', { style: 'currency', currency: 'EUR' }).format(n)
     }
 
-    function goBack() {
-      router.push('/')
-    }
-
-    return { accountNumber, loading, transactions, query, dateFrom, dateTo, filtered, formatAmount, goBack }
+    return { accountNr, loading, transactions, query, dateFrom, dateTo, filtered, formatAmount }
   }
 }
 </script>
@@ -48,8 +52,7 @@ export default {
 <template>
   <div class="card">
     <div class="header">
-      <button class="btn" @click="goBack">← Back</button>
-      <h2 class="account-title">{{ accountNumber }}</h2>
+      <h2 class="account-title">{{ accountNr }}</h2>
     </div>
     <div v-if="loading" class="loading">Loading transactions...</div>
     <div v-else class="content">
@@ -74,3 +77,16 @@ export default {
     </div>
   </div>
 </template>
+
+<style scoped>
+.search-row { 
+  display: flex;
+  gap: 8px;
+  margin-bottom: 12px;
+  flex-wrap: wrap; /* allow inputs to wrap on narrow screens */
+}
+.search-row input {
+  flex: 1 1 0; /* grow and shrink as needed */
+  min-width: 0; /* prevents overflow due to long content */
+}
+</style>

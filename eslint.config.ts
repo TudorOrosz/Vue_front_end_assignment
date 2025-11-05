@@ -24,5 +24,12 @@ export default defineConfig([
   {
     files: ['**/*.vue'],
     languageOptions: { parserOptions: { parser: tseslint.parser } }
+  },
+  {
+    files: ['src/__tests__/**/*.ts', 'src/__tests__/**/*.js'],
+    rules: {
+      '@typescript-eslint/no-explicit-any': 'off',
+      'no-prototype-builtins': 'off'
+    }
   }
 ])
